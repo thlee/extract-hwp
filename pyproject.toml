@@ -40,3 +40,9 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/extract_hwp"]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
