@@ -1,169 +1,169 @@
 # extract-hwp
 
-Python library for extracting text from Korean HWP files (HWP 5.0 and HWPX formats).
+한글과컴퓨터의 HWP 파일(HWP 5.0 및 HWPX 형식)에서 텍스트를 추출하는 Python 라이브러리입니다.
 
-## Features
+## 특징
 
-- **Multi-format support**: Both HWP 5.0 (OLE) and HWPX (ZIP/XML) files
-- **Password detection**: Detect password-protected files before processing
-- **Structured extraction**: Preserve paragraph structure during text extraction
-- **Robust error handling**: Defensive handling of corrupted or invalid files
-- **Unicode support**: Full support for Korean and multi-language text
+- **다중 포맷 지원**: HWP 5.0 (OLE) 및 HWPX (ZIP/XML) 파일 모두 지원
+- **암호화 파일 감지**: 처리하기 전에 암호로 보호된 파일을 감지
+- **구조화된 추출**: 텍스트 추출 시 단락 구조 보존
+- **견고한 오류 처리**: 손상되거나 잘못된 파일에 대한 방어적 처리
+- **유니코드 지원**: 한글 및 다국어 텍스트 완전 지원
 
-## Installation
+## 설치
 
 ```bash
 pip install extract-hwp
 ```
 
-## Usage
+## 사용법
 
-### Basic Usage
+### 기본 사용법
 
 ```python
 from extract_hwp import extract_text_from_hwp
 
-# Extract text from HWP or HWPX file
+# HWP 또는 HWPX 파일에서 텍스트 추출
 text, error = extract_text_from_hwp("document.hwp")
 if error is None:
     print(text)
 else:
-    print(f"Error: {error}")
+    print(f"오류: {error}")
 ```
 
-### Format-specific Extraction
+### 포맷별 추출
 
 ```python
 from extract_hwp import extract_text_from_hwpx, extract_text_from_hwp5
 
-# HWPX files only
+# HWPX 파일 전용
 hwpx_text = extract_text_from_hwpx("document.hwpx")
 
-# HWP 5.0 files only
+# HWP 5.0 파일 전용
 hwp5_text = extract_text_from_hwp5("document.hwp")
 ```
 
-### Password Detection
+### 암호화 파일 감지
 
 ```python
 from extract_hwp import is_hwp_file_password_protected
 
 if is_hwp_file_password_protected("document.hwp"):
-    print("File is password protected.")
+    print("파일이 암호로 보호되어 있습니다.")
 else:
     text, error = extract_text_from_hwp("document.hwp")
 ```
 
-## API Reference
+## API 참조
 
-### Core Functions
+### 핵심 함수
 
 #### `extract_text_from_hwp(filepath)`
 
-Extract text from HWP/HWPX files (unified interface).
+HWP/HWPX 파일에서 텍스트를 추출합니다 (통합 인터페이스).
 
-**Parameters:**
-- `filepath` (str): Path to HWP or HWPX file
+**매개변수:**
+- `filepath` (str): HWP 또는 HWPX 파일 경로
 
-**Returns:**
-- `tuple`: (extracted_text, error_message). On success, error_message is None
+**반환값:**
+- `tuple`: (추출된_텍스트, 오류_메시지). 성공시 오류_메시지는 None
 
-**Raises:**
-- `FileNotFoundError`: File not found
-- `PermissionError`: No file access permission
-- `ValueError`: Unsupported file format
+**예외:**
+- `FileNotFoundError`: 파일을 찾을 수 없음
+- `PermissionError`: 파일 접근 권한이 없음
+- `ValueError`: 지원하지 않는 파일 형식
 
-### Format-specific Functions
+### 포맷별 함수
 
 #### `extract_text_from_hwpx(hwpx_file_path)`
 
-Extract text from HWPX files.
+HWPX 파일에서 텍스트를 추출합니다.
 
-**Parameters:**
-- `hwpx_file_path` (str): Path to HWPX file
+**매개변수:**
+- `hwpx_file_path` (str): HWPX 파일 경로
 
-**Returns:**
-- `str`: Extracted text (empty string on error)
+**반환값:**
+- `str`: 추출된 텍스트 (오류 시 빈 문자열)
 
 #### `extract_text_from_hwp5(filepath)`
 
-Extract text from HWP 5.0 (OLE) files.
+HWP 5.0 (OLE) 파일에서 텍스트를 추출합니다.
 
-**Parameters:**
-- `filepath` (str): Path to HWP file
+**매개변수:**
+- `filepath` (str): HWP 파일 경로
 
-**Returns:**
-- `str`: Extracted text (empty string on error)
+**반환값:**
+- `str`: 추출된 텍스트 (오류 시 빈 문자열)
 
-### Password Detection Functions
+### 암호화 감지 함수
 
 #### `is_hwp_file_password_protected(filepath)`
 
-Check if HWP/HWPX file is password protected.
+HWP/HWPX 파일이 암호로 보호되어 있는지 확인합니다.
 
-**Parameters:**
-- `filepath` (str): File path to check
+**매개변수:**
+- `filepath` (str): 확인할 파일 경로
 
-**Returns:**
-- `bool`: True if password protected, False otherwise
+**반환값:**
+- `bool`: 암호로 보호된 경우 True, 그렇지 않으면 False
 
-## Supported Formats
+## 지원 포맷
 
-### HWP 5.0 (OLE Format)
-- Extension: `.hwp`
-- Structure: OLE compound document format
-- Compression: zlib compression support
-- Features: Binary structure analysis for text extraction
+### HWP 5.0 (OLE 포맷)
+- 확장자: `.hwp`
+- 구조: OLE 복합 문서 형식
+- 압축: zlib 압축 지원
+- 특징: 바이너리 구조 분석을 통한 텍스트 추출
 
-### HWPX (ZIP/XML Format)
-- Extension: `.hwpx`
-- Structure: ZIP archive containing XML documents
-- Features: XML parsing for structured text extraction
+### HWPX (ZIP/XML 포맷)
+- 확장자: `.hwpx`
+- 구조: XML 문서가 포함된 ZIP 아카이브
+- 특징: 구조화된 텍스트 추출을 위한 XML 파싱
 
-## Dependencies
+## 의존성
 
-- `olefile>=0.46`: HWP 5.0 OLE file processing
+- `olefile>=0.46`: HWP 5.0 OLE 파일 처리
 
-## Development
+## 개발
 
-### Development Setup
+### 개발 환경 설정
 
 ```bash
-# Clone repository
-git clone https://github.com/your-username/extract-hwp.git
+# 저장소 복제
+git clone https://github.com/thlee/extract-hwp.git
 cd extract-hwp
 
-# Install dependencies
+# 의존성 설치
 uv sync
 
-# Install with dev dependencies
+# 개발 의존성 포함 설치
 uv sync --extra dev
 ```
 
-### Testing
+### 테스트
 
 ```bash
-# Run tests
+# 테스트 실행
 pytest
 
-# With coverage
+# 커버리지 포함
 pytest --cov=src/extract_hwp
 ```
 
-### Code Quality
+### 코드 품질
 
 ```bash
-# Format code
+# 코드 포맷팅
 black src/ tests/
 
-# Type checking
+# 타입 검사
 mypy src/
 ```
 
-## License
+## 라이선스
 
-MIT License - see [LICENSE](LICENSE) file for details.
+BSD 3-Clause License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
 
-## Changelog
+## 변경사항
 
-See [CHANGELOG.md](CHANGELOG.md) for version history.
+버전 히스토리는 [CHANGELOG.md](CHANGELOG.md)에서 확인할 수 있습니다.

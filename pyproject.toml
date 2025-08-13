@@ -11,11 +11,11 @@ requires-python = ">=3.8"
 authors = [
     {name = "extract-hwp", email = "extract-hwp@example.com"}
 ]
-license = {text = "MIT"}
+license = {text = "BSD-3-Clause"}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
