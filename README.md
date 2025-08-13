@@ -164,10 +164,6 @@ mypy src/
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## Contributing
-
-Issues, feature requests, and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for version history.
