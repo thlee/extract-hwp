@@ -39,7 +39,10 @@ dependencies = [
 
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/extract_hwp"]
+packages = ["extract_hwp"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
 
 [dependency-groups]
 dev = [
